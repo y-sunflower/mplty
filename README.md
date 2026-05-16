@@ -53,25 +53,17 @@ ax.set_xlim(0, 2 * np.pi)
 ax.set_ylim(-1.4, 1.4)
 
 ax_typst(
-    3.5,
+    3,
     0,
-    r"""
+    """
     #box(
       fill: rgb("#1e1e1e"),
       radius: 6pt,
       inset: 8pt,
-      text(
-        font: "New Computer Modern",
-        fill: white,
-        size: 11pt,
-      )[
-        $
-          f(x) = sin(x)
-        $
-      ],
+      text(fill: white)[$f(x) = sin(x)$]
     )
     """,
-    scale=1.2,
+    scale=1.2, # 20% zoom
 )
 ```
 
