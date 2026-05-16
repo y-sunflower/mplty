@@ -16,8 +16,8 @@ classifiers = [
   "Programming Language :: Python :: 3"
 ]
 dependencies = [
-  "matplotlib>=3.10.9",
-  "typst>=0.14.9",
+  "matplotlib>=3.5",
+  "typst>=0.12",
 ]
 
 [project.urls]
