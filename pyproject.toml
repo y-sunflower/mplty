@@ -21,8 +21,8 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://y-sunflower.github.io/mplty/"
-Homepage = "https://y-sunflower.github.io/mplty/"
+Documentation = "https://github.com/y-sunflower/mplty"
+Homepage = "https://github.com/y-sunflower/mplty"
 Issues = "https://github.com/y-sunflower/mplty/issues"
 Repository = "https://github.com/y-sunflower/mplty"
 

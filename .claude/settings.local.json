@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run *)",
+      "Bash(/Users/josephbarbier/l/mplty/.venv/bin/pytest tests/ -v)"
+    ]
+  }
+}

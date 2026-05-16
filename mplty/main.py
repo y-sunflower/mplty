@@ -1,10 +1,11 @@
 import typst
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+from typing import Optional
 
 
 def ax_typst(
@@ -15,7 +16,7 @@ def ax_typst(
     scale=1,
     page_rule='#set page(width: auto, height: auto, margin: 0pt, fill: rgb("#00000000"))',
     ppi=300,
-    **kwargs,
+    typst_kwargs: Optional[dict] = None,
 ):
     """
     Render Typst markup and place it on a matplotlib Axes.
@@ -67,6 +68,9 @@ def ax_typst(
     if ax is None:
         ax = plt.gca()
 
+    if typst_kwargs is None:
+        typst_kwargs = dict()
+
     with TemporaryDirectory() as tmp:
         typst_file = Path(tmp) / "input.typ"
         output_file = Path(tmp) / "output.png"
@@ -75,14 +79,11 @@ def ax_typst(
             markup = f"{page_rule}\n{markup}"
         typst_file.write_text(markup, encoding="utf-8")
 
-        typst.compile(str(typst_file), output=str(output_file), ppi=ppi, **kwargs)
+        typst.compile(str(typst_file), output=str(output_file), ppi=ppi, **typst_kwargs)
 
         img = mpimg.imread(output_file)
 
     imagebox = OffsetImage(img, zoom=scale / 3)
-
-    ab = AnnotationBbox(
-        imagebox, (x, y), frameon=False, box_alignment=(0, 0), zorder=10
-    )
+    ab = AnnotationBbox(imagebox, (x, y), frameon=False, box_alignment=(0, 0))
 
     ax.add_artist(ab)
